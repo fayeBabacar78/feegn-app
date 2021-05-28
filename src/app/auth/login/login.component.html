@@ -1,0 +1,38 @@
+<mat-card style="margin-top: 20% !important;">
+  <mat-card-header>
+    <mat-card-title>Compte</mat-card-title>
+    <mat-card-subtitle>Se connecter</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="data" (ngSubmit)="login()">
+      <div class="ui-fluid p-formgrid p-grid">
+        <div class="p-field p-col-12 p-md-12">
+          <label for="username">E-mail</label>
+          <div class="ui-inputgroup">
+            <span style="background: inherit" class="ui-inputgroup-addon">
+              <i class="pi pi-envelope" style="line-height: 1.25;"></i>
+            </span>
+            <input id="username" formControlName="username" type="text" pInputText class="w-100">
+          </div>
+        </div>
+        <div class="p-field p-col-12 p-md-12">
+          <label for="password">Mot de passe</label>
+          <div class="ui-inputgroup">
+            <span style="background: inherit" class="ui-inputgroup-addon">
+              <i class="pi pi-lock" style="line-height: 1.25;"></i>
+            </span>
+            <input id="password" formControlName="password" type="password" pInputText class="w-100" >
+          </div>
+        </div>
+        <div class="p-field p-col-12 p-md-12">
+          <button
+            type="submit"
+            [disabled]="data.invalid"
+            [class.not-allowed]="data.invalid"
+            pButton style="width: 100%" label="Se connecter"></button>
+        </div>
+        <a routerLink="/auth/register" class="text-center">Créer un compte</a>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

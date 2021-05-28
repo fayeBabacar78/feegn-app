@@ -1,0 +1,26 @@
+.image-section {
+  background: url("../../../assets/images/background/o-food.jpg") no-repeat center;
+  background-size: cover;
+}
+
+.login-section {
+  position: relative;
+}
+
+.layout-content {
+  position: absolute;
+  right: 0;
+  left: 0;
+}
+@media (min-width: 600px){
+  .layout-content {
+    top: auto;
+  }
+}
+@media (max-width: 600px){
+  .back-arrow {
+    display: none;
+  }
+}
+
+

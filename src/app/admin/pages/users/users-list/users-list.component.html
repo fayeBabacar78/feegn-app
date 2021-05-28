@@ -1,0 +1,33 @@
+<p-table [value]="users">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Prénom</th>
+      <th>Nom</th>
+      <th>E-mail</th>
+      <th>Téléphone</th>
+      <th>Agence</th>
+      <th>Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-user>
+    <tr>
+      <td>{{user.prenom}}</td>
+      <td>{{user.nom}}</td>
+      <td>
+        <a href="mailto:{{user.email}}">{{user.email}}</a>
+      </td>
+      <td>{{user.telephone1}}</td>
+      <td>{{user.agence.nom}}</td>
+      <td class="align-middle">
+        <div class="row justify-content-around">
+          <button disabled (click)="showUser(user)" pButton type="button" icon="pi pi-eye"
+                  class="p-button-rounded p-button-primary" title="Détail"></button>
+          <a [routerLink]="['../','edit', user?.id]" pButton type="button" icon="pi pi-pencil"
+             class="p-button-rounded p-button-warning" title="Editer"></a>
+          <button (click)="deleteUser(user)" pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger"
+                  title="Supprimer"></button>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

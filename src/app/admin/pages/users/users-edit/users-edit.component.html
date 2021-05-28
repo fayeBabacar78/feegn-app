@@ -1,0 +1,72 @@
+<p-card>
+  <form #data="ngForm" (ngSubmit)="update(data)">
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <label for="prenom">Prénom</label>
+        <input class="w-100" id="prenom" name="prenom" type="text" pInputText [(ngModel)]="user.prenom" required>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <label for="nom">Nom</label>
+        <input id="nom" class="w-100" name="nom" type="text" pInputText [(ngModel)]="user.nom" required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+        <label for="adresse">Adresse</label>
+        <input id="adresse" class="w-100" name="email" type="text" pInputText [(ngModel)]="user.adresse" required>
+      </div>
+      <div class="col-sm-12 col-md-6">
+        <label for="mail">E-mail</label>
+        <input id="mail" class="w-100" name="email" type="email" pInputText [(ngModel)]="user.email" required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+        <label for="phone1">Téléphone 1 </label>
+        <input id="phone1" class="w-100" name="telephone1" type="tel" pInputText [(ngModel)]="user.telephone1"
+               required>
+      </div>
+      <div class="col-sm-12 col-md-6">
+        <label for="phone2">Téléphone 1 </label>
+        <input id="phone2" class="w-100" name="telephone2" type="tel" pInputText [(ngModel)]="user.telephone2">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+        <label for="password">Mot de Passe</label>
+        <input id="password" class="w-100" name="password" type="password" pInputText [(ngModel)]="user.password"
+               required>
+      </div>
+      <div class="col-sm-12 col-md-6">
+        <label for="password-confirm">Confirmation</label>
+        <input id="password-confirm" class="w-100" name="passwordConfirmation" type="password" pInputText
+               [(ngModel)]="user.passwordConfirmation" required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+        <mat-form-field>
+          <mat-label>Agence</mat-label>
+          <mat-select [(ngModel)]="user.agence" name="categorie" required>
+            <mat-option *ngFor="let agence of (agences | async)" [value]="agence">
+              {{agence.nom}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-12 col-md-6">
+        <mat-form-field>
+          <mat-label>Role</mat-label>
+          <mat-select [(ngModel)]="user.roles" name="categorie" required multiple >
+            <mat-option *ngFor="let role of roles" [value]="role.value">
+              {{role.key}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="mt-3">
+      <button [disabled]="data.invalid" type="submit" pButton label="Mettre à jour"></button>
+    </div>
+  </form>
+</p-card>

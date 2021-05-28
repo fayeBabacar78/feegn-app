@@ -1,0 +1,16 @@
+<p-card>
+  <form #data="ngForm" class="p-4" (ngSubmit)="create(data)">
+    <label>
+      Nom
+      <input name="nom" type="text" pInputText class="w-100" [(ngModel)]="categorie.nom" required>
+    </label>
+    <label>
+      Description
+      <textarea name="description" rows="5" cols="30" pInputTextarea class="w-100" [(ngModel)]="categorie.description"></textarea>
+    </label>
+    <input hidden (change)="onFileSelected($event)" #fileInput type="file" id="file" required>
+    <button pButton pRipple type="button" icon="pi pi-file" class="p-button-primary mr-2" (click)="fileInput.click()"></button>
+    <button pButton label="Ajouter" type="submit" [disabled]="data.invalid"></button>
+
+  </form>
+</p-card>

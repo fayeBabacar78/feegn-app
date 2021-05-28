@@ -1,0 +1,65 @@
+<h4 class="pt-2" ly-dialog-title>{{article.titre}}</h4>
+<div ly-dialog-content>
+  <div>
+    <img class="picture" [src]="article.imageUrl" alt="{{article.imageName}}">
+    <div>
+      <div class="row mb-2">
+        <div class="col-9">
+          <div>
+            <div title="Date de trouvaille" class="badge badge-secondary mt-3 p-2">{{article.dateT|date:'medium'}}</div>
+          </div>
+          <div>
+            <div title="Date Création" class="badge badge-primary mt-3 p-2">{{article.createdAt|date:'medium'}}</div>
+          </div>
+          <div>
+            <div title="Lieu de trouvaille" class="badge badge-warning mt-3 p-2">{{article.lieuT}}</div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div>
+            <div *ngIf="article.isClaim" title="En réclamation" class="badge badge-success mt-3 p-2">Claimed</div>
+            <div *ngIf="!article.isClaim" title="En réclamation" class="badge badge-danger mt-3 p-2">Claimed</div>
+          </div>
+          <div>
+            <div *ngIf="article.checked" title="En réclamation" class="badge badge-success mt-3 p-2">Checked</div>
+            <div *ngIf="!article.checked" title="En réclamation" class="badge badge-danger mt-3 p-2">Checked</div>
+          </div>
+          <div>
+            <div *ngIf="article.delivered" title="Délivré" class="badge badge-success mt-3 p-2">Delivered</div>
+            <div *ngIf="!article.delivered" title="Délivré" class="badge badge-danger mt-3 p-2">Delivered</div>
+          </div>
+        </div>
+      </div>
+      <p style="width: 520px" class="text-justify" *ngIf="article.description">{{article.description}}</p>
+    </div>
+  </div>
+  <hr>
+  <ng-container *ngIf="article.user">
+    <h2>Informations du réclamateurs</h2>
+    <div class="row">
+      <div class="col-6">
+        <p><span class="font-weight-bold">Prénom: </span>{{article.user?.prenom}}</p>
+        <p><span class="font-weight-bold">Nom: </span>{{article.user?.nom}}</p>
+      </div>
+      <div class="col-6">
+        <p><span class="font-weight-bold">Email: </span>
+          <a href="mailto:{{article.user?.email}} subject=Réclamtion {{article.titre}}">{{article.user?.email}}</a>
+        </p>
+        <p><span class="font-weight-bold">Téléphone 1: </span>
+          <a href="tel:{{article.user?.telephone1}}">{{article.user?.telephone1}}</a>
+        </p>
+        <p *ngIf="article.user.telephone2"><span class="font-weight-bold">Téléphone 2: </span>
+          <a href="tel:{{article.user?.telephone2}}">{{article.user?.telephone2}}</a>
+        </p>
+      </div>
+    </div>
+    <hr>
+    <h2>Motif de la réclamation</h2>
+    <p *ngIf="article.reclamation" style="width: 520px" class="text-justify">{{article.reclamation}}</p>
+  </ng-container>
+</div>
+<ly-grid container justify="end" ly-dialog-actions>
+  <button pButton pRipple type="button" label="Ok" class="p-button-primary p-button-text"
+          (click)="dialogRef.close()">
+  </button>
+</ly-grid>

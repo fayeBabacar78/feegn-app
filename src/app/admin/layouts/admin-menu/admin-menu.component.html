@@ -1,0 +1,38 @@
+<!-- ============================================================== -->
+<!-- sidebar -->
+<!-- ============================================================== -->
+<div class="user user-profile">
+  <!-- User profile image -->
+  <!-- User profile text-->
+  <!-- ============================================================== -->
+  <!-- Profile - style you can find in header.scss -->
+  <!-- ============================================================== -->
+  <div class="profile-text py-0"><a [matMenuTriggerFor]="sdprofile" class=""> Feegn App <i
+    class="ti-angle-down font-12 m-l-5"></i></a></div>
+  <mat-menu #sdprofile="matMenu" class="mymegamenu">
+    <button (click)="logout()" mat-menu-item>
+      <mat-icon exit_to_app></mat-icon> Se déconnecter
+    </button>
+  </mat-menu>
+</div>
+<mat-nav-list appAccordion>
+  <mat-list-item
+    *ngFor="let menuitem of menuItems.getMenuitems()"
+    appAccordionLink
+    routerLinkActive="selected"
+    group="{{menuitem.state}}">
+    <a *ngIf="(menuitem.state!=='agences'&& menuitem.state!=='users') && (auth.hasAdminAbility || auth.hasModAbility)" appAccordionToggle [routerLink]="['/feegn', menuitem.state]">
+      <img alt="{{menuitem.state}}" src="../../../../assets/icons/{{ menuitem.state}}.png" class="p-mr-3">
+      <span>{{ menuitem.name }}</span>
+      <span fxFlex></span>
+      <span class="label label-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{ badge.value }}</span>
+    </a>
+
+    <a *ngIf="(menuitem.state==='agences'||menuitem.state==='users') && auth.hasAdminAbility" appAccordionToggle [routerLink]="['/feegn', menuitem.state]">
+      <img alt="{{menuitem.state}}" src="../../../../assets/icons/{{ menuitem.state}}.png" class="p-mr-3">
+      <span>{{ menuitem.name }}</span>
+      <span fxFlex></span>
+      <span class="label label-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{ badge.value }}</span>
+    </a>
+  </mat-list-item>
+</mat-nav-list>

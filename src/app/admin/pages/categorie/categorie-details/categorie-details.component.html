@@ -1,0 +1,15 @@
+<h4 class="pt-2" ly-dialog-title>{{categorie.nom}}</h4>
+<div ly-dialog-content>
+  <div>
+    <img class="picture" [src]="categorie.imageUrl" alt="{{categorie.imageName}}">
+    <div>
+      <p class="badge badge-primary mt-3 p-2">{{categorie.createdAt|date:'medium'}}</p>
+      <p style="width: 400px" class="text-justify" *ngIf="categorie.description">{{categorie.description}}</p>
+    </div>
+  </div>
+</div>
+<ly-grid container justify="end" ly-dialog-actions>
+  <button pButton pRipple type="button" label="Ok" class="p-button-primary p-button-text"
+          (click)="dialogRef.close()">
+  </button>
+</ly-grid>

@@ -1,0 +1,14 @@
+mat-card {
+  background: #EAF6FD;
+}
+
+button {
+  background: #1E1E1E;
+  border: none
+}
+
+@media (min-width: 600px) {
+  .down-back-arrow {
+    display: none;
+  }
+}

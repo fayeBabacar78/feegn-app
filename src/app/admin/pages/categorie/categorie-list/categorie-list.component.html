@@ -1,0 +1,32 @@
+<p-table [value]="categories">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Nom</th>
+      <th>Date de creation</th>
+      <th>Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-cat>
+    <tr>
+      <td>
+        <div class="row">
+          <span class="col-7 align-self-center">{{cat.nom}}</span>
+          <span class="col-5">
+            <img class="" [src]="cat.imageUrl" alt="{{cat.imageName}}">
+          </span>
+        </div>
+      </td>
+      <td class="align-middle">{{cat.createdAt | date: 'medium'}}</td>
+      <td class="align-middle">
+        <div class="row justify-content-around">
+          <button (click)="showCategorie(cat)" pButton type="button" icon="pi pi-eye"
+                  class="p-button-rounded p-button-primary" title="Détail"></button>
+          <button [disabled]="!auth.hasAdminAbility" [routerLink]="['../','edit',cat.id]" pButton type="button" icon="pi pi-pencil"
+                  class="p-button-rounded p-button-warning" title="Editer"></button>
+          <button [disabled]="!auth.hasAdminAbility" (click)="deleteCategorie(cat)" pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger"
+                  title="Supprimer"></button>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

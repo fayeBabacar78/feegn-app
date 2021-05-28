@@ -1,0 +1,80 @@
+<p-card>
+  <form #data="ngForm" class="p-4" (ngSubmit)="update(data)">
+    <div class="row">
+      <div class="col-12">
+        <label>
+          Nom
+          <input name="titre" type="text" pInputText class="w-100" [(ngModel)]="article.titre" required>
+        </label>
+      </div>
+      <div class="col-sm-12 col-md-6">
+        <label>
+          Lieu de trouvaille
+          <select name="lieu" type="text" pInputText class="w-100" [(ngModel)]="article.lieuT" required>
+            <option *ngFor="let lieu of lieux" [value]="lieu">{{lieu}}</option>
+          </select>
+        </label>
+      </div>
+      <div class="col-sm-12 col-md-6">
+        <label>
+          Nom complet du déclareur
+          <input name="nom" type="text" pInputText class="w-100" [(ngModel)]="article.nom " required>
+        </label>
+      </div>
+      <div class="col-sm-12 col-md-6">
+        <label>
+          E-mail du déclareur
+          <input name="mail" type="email" pInputText class="w-100" [(ngModel)]="article.email " required>
+        </label>
+      </div>
+      <div class="col-sm-12 col-md-6">
+        <label>
+          Téléphone du déclareur
+          <input name="telephone" type="tel" pInputText class="w-100" [(ngModel)]="article.telephone" required>
+        </label>
+      </div>
+      <div class="col-6">
+        <mat-form-field>
+          <mat-label>Categorie</mat-label>
+          <mat-select [(ngModel)]="article.categorie" name="categorie" required>
+            <mat-option *ngFor="let cat of categories" [value]="cat">
+              {{cat.nom}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field class="example-full-width">
+          <mat-label> Date de trouvaille</mat-label>
+          <input matInput type="date" [(ngModel)]="article.dateT" name="date">
+        </mat-form-field>
+      </div>
+      <div class="col-12 row">
+        <div class="col-4">
+          <h6>Claimed</h6>
+          <p-inputSwitch [(ngModel)]="article.isClaim" name="isClaim"></p-inputSwitch>
+        </div>
+        <div class="col-4">
+          <h6>Checked</h6>
+          <p-inputSwitch [(ngModel)]="article.checked" name="checked"></p-inputSwitch>
+        </div>
+        <div class="col-4">
+          <h6>Delivered</h6>
+          <p-inputSwitch [(ngModel)]="article.delivered" name="delivered"></p-inputSwitch>
+        </div>
+      </div>
+      <div class="col-12">
+        <label>
+          Description
+          <textarea name="description" rows="5" cols="30" pInputTextarea class="w-100"
+                    [(ngModel)]="article.description" required></textarea>
+          <small class="text-muted">Veuillez faire une petite description sur l'article en donnant les details notament  sur le lieu de trouvaille</small>
+        </label>
+      </div>
+    </div>
+    <input hidden (change)="onFileSelected($event)" #fileInput type="file" id="file" required>
+    <button pButton pRipple type="button" icon="pi pi-file" class="p-button-primary mr-2"
+            (click)="fileInput.click()"></button>
+    <button pButton label="Enregister" type="submit" [disabled]="data.invalid"></button>
+  </form>
+</p-card>

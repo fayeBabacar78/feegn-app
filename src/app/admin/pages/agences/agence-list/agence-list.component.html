@@ -1,0 +1,37 @@
+<p-table [value]="agences">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Nom</th>
+      <th>Adresse</th>
+      <th>Telephone</th>
+      <th>Date de creation</th>
+      <th>Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-agence>
+    <tr>
+      <td>
+        <div class="row">
+          <span class="col-7 align-self-center">{{agence.nom}}</span>
+          <span class="col-5">
+            <img class="" [src]="agence?.imageUrl" alt="{{agence?.imageName}}">
+          </span>
+        </div>
+      </td>
+      <td class="align-middle">{{agence.adresse}}</td>
+      <td class="align-middle">{{agence.phone}}</td>
+      <td class="align-middle">{{agence.createdAt | date: 'medium'  }}</td>
+      <td class="align-middle">
+        <div class="row justify-content-around">
+          <button disabled (click)="showAgence(agence)" pButton type="button" icon="pi pi-eye"
+                  class="p-button-rounded p-button-primary" title="Détail"></button>
+          <a [routerLink]="['../','edit', agence?.id]" pButton type="button" icon="pi pi-pencil"
+             class="p-button-rounded p-button-warning" title="Editer"></a>
+          <button (click)="deleteAgence(agence)" pButton type="button" icon="pi pi-trash"
+                  class="p-button-rounded p-button-danger"
+                  title="Supprimer"></button>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

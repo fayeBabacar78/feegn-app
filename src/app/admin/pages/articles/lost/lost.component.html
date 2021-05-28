@@ -1,0 +1,36 @@
+<div class="wrapper row3">
+  <main class="hoc container clear">
+    <p>
+
+    </p>
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <div class="center btmspace-40">
+      <h3 class="heading underline font-x2">Vous devez vous connectez pour reclamer un article</h3>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-3 col-sm-auto mt-2" *ngFor="let article of articles">
+        <p-card [title]="article?.titre" header="Trouvé à {{article.lieuT}}" subheader="Le {{article.dateT | date: 'medium'}}" [style]="{width: '260px'}" styleClass="p-card-shadow">
+          <ng-template pTemplate="header">
+            <img [src]="article.imageUrl" [alt]="article.nom" style="height: 120px">
+          </ng-template>
+          <p>Par {{article.nom}}</p>
+          <ng-template pTemplate="footer">
+            <button (click)="showDialog(article)" [disabled]="!auth.hasLoggedIn"  pButton label="Réclamer" icon="pi pi-check" style="background-color: #CF8233 !important; border: #CF8233 !important;"></button>
+            <p-button (click)="show(article)" label="Voir" icon="pi pi-eye" styleClass="p-button-secondary" [style]="{'margin-left': '.5em'}"></p-button>
+          </ng-template>
+        </p-card>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </main>
+</div>
+<p-dialog header="Réclamation article {{claimedArticle?.titre}}" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+  <label>
+    Motif de votre réclamation
+    <textarea [rows]="5" [cols]="30" pInputTextarea [(ngModel)]="claimedArticle.reclamation" name="reclamation" autoResize class="w-100"></textarea>
+  </label>
+  <ng-template pTemplate="footer">
+    <p-button  [disabled]="!claimedArticle.reclamation" icon="pi pi-check" (click)="vaidateClaim()" label="Confirmer" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>

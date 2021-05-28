@@ -1,0 +1,36 @@
+<p-card>
+  <form #data="ngForm" class="p-4" (ngSubmit)="update(data)">
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <label>
+          Nom
+          <input name="nom" type="text" pInputText class="w-100" [(ngModel)]="agence.nom" required>
+        </label>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <label>
+          Adresse
+          <input name="adresse" type="text" pInputText class="w-100" [(ngModel)]="agence.adresse" required>
+        </label>
+      </div>
+      <div class="col-md-12 col-sm-12">
+        <label>
+          Téléphone
+          <input name="phone" type="tel" pInputText class="w-100" [(ngModel)]="agence.phone" required>
+        </label>
+      </div>
+      <div class="col-md-12 col-sm-12">
+        <label>
+          Description
+          <textarea rows="5" cols="30" name="description" pInputTextarea class="w-100" [(ngModel)]="agence.description"
+                    required></textarea>
+        </label>
+      </div>
+    </div>
+    <input hidden (change)="onFileSelected($event)" #fileInput type="file" id="file" required>
+    <button pButton pRipple type="button" icon="pi pi-file" class="p-button-primary mr-2"
+            (click)="fileInput.click()"></button>
+    <button pButton label="Ajouter" type="submit" [disabled]="data.invalid"></button>
+
+  </form>
+</p-card>
